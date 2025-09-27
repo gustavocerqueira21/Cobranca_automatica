@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planilha Controle de Cobranças</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .controls button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .btn-add {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-add:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+        
+        .btn-export {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-export:hover {
+            background: #2563eb;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .filter-group select, .filter-group input {
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .stats {
+            padding: 20px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card.total { border-color: #3b82f6; }
+        .stat-card.pending { border-color: #f59e0b; }
+        .stat-card.serasa { border-color: #ef4444; }
+        .stat-card.recovered { border-color: #10b981; }
+        
+        .stat-card h3 {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .stat-card p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            padding: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        
+        thead {
+            background: #1e293b;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        th {
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tbody tr {
+            transition: background 0.2s;
+        }
+        
+        tbody tr:hover {
+            background: #f1f5f9;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge.baixo { background: #d1fae5; color: #065f46; }
+        .badge.medio { background: #fef3c7; color: #92400e; }
+        .badge.alto { background: #fee2e2; color: #991b1b; }
+        .badge.fase1 { background: #dbeafe; color: #1e40af; }
+        .badge.fase2 { background: #fef3c7; color: #92400e; }
+        .badge.fase3 { background: #fed7aa; color: #9a3412; }
+        .badge.fase4 { background: #fecaca; color: #991b1b; }
+        .badge.serasa-sim { background: #fee2e2; color: #991b1b; }
+        .badge.serasa-nao { background: #d1fae5; color: #065f46; }
+        .badge.reincidente { background: #fecaca; color: #991b1b; font-weight: 700; }
+        
+        .status-select {
+            padding: 6px 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .btn-action {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-edit {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background: #2563eb;
+        }
+        
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+        
+        .btn-script {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-script:hover {
+            background: #059669;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            font-size: 24px;
+            color: #1e293b;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #475569;
+            font-size: 14px;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .form-actions button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .btn-save {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-cancel {
+            background: #64748b;
+            color: white;
+        }
+        
+        .highlight-serasa {
+            background: #fee2e2 !important;
+        }
+        
+        .days-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .days-0-15 { background: #d1fae5; color: #065f46; }
+        .days-16-30 { background: #fef3c7; color: #92400e; }
+        .days-31-90 { background: #fed7aa; color: #9a3412; }
+        .days-90plus { background: #fecaca; color: #991b1b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Sistema de Controle de Cobranças</h1>
+            <p>Gestão Completa de Inadimplentes | Empréstimos Consignados</p>
+        </div>
+        
+        <div class="controls">
+            <button class="btn-add" id="btnAddDevedor">➕ Adicionar Devedor</button>
+            <button class="btn-export" id="btnExport">📥 Exportar CSV</button>
+            
+            <div class="filter-group">
+                <select id="filterPerfil">
+                    <option value="">Todos os Perfis</option>
+                    <option value="Baixo">Baixo Risco</option>
+                    <option value="Médio">Médio Risco</option>
+                    <option value="Alto">Alto Risco</option>
+                </select>
+                
+                <select id="filterFase">
+                    <option value="">Todas as Fases</option>
+                    <option value="Fase 1">Fase 1 (0-30 dias)</option>
+                    <option value="Fase 2">Fase 2 (31-90 dias)</option>
+                    <option value="Fase 3">Fase 3 (91-180 dias)</option>
+                    <option value="Fase 4">Fase 4 (180+ dias)</option>
+                </select>
+                
+                <select id="filterSerasa">
+                    <option value="">Status SERASA</option>
+                    <option value="Sim">No SERASA</option>
+                    <option value="Não">Não no SERASA</option>
+                </select>
+                
+                <input type="text" id="searchName" placeholder="🔍 Buscar por nome..." style="width: 200px;">
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card total">
+                <h3>Total de Devedores</h3>
+                <p id="statTotal">5</p>
+            </div>
+            <div class="stat-card pending">
+                <h3>Valor Total Pendente</h3>
+                <p id="statPending">R$ 2.450,00</p>
+            </div>
+            <div class="stat-card serasa">
+                <h3>Inscritos SERASA</h3>
+                <p id="statSerasa">2</p>
+            </div>
+            <div class="stat-card recovered">
+                <h3>Recuperado no Mês</h3>
+                <p id="statRecovered">R$ 850,00</p>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="mainTable">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Valor Original</th>
+                        <th>Valor Atual</th>
+                        <th>Dias Atraso</th>
+                        <th>Perfil Risco</th>
+                        <th>Fase</th>
+                        <th>SERASA</th>
+                        <th>Última Ação</th>
+                        <th>Próxima Ação</th>
+                        <th>Status</th>
+                        <th>Observações</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr class="highlight-serasa">
+                        <td><strong>João Silva</strong> <span class="badge reincidente">REINCIDENTE</span></td>
+                        <td>123.456.789-00</td>
+                        <td>R$ 500,00</td>
+                        <td>R$ 545,80</td>
+                        <td><span class="days-badge days-31-90">42 dias</span></td>
+                        <td><span class="badge baixo">Baixo</span></td>
+                        <td><span class="badge fase2">Fase 2</span></td>
+                        <td><span class="badge serasa-sim">Sim</span></td>
+                        <td>WhatsApp em 20/09</td>
+                        <td>E-mail em 27/09</td>
+                        <td>
+                            <select class="status-select">
+                                <option>Em negociação</option>
+                                <option>Aguardando resposta</option>
+                                <option>Acordo fechado</option>
+                                <option>Inadimplente</option>
+                            </select>
+                        </td>
+                        <td>Prometeu pagar dia 30</td>
+                        <td class="actions">
+                            <button class="btn-action btn-script">📄</button>
+                            <button class="btn-action btn-edit">✏️</button>
+                            <button class="btn-action btn-delete">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maria Santos</strong></td>
+                        <td>987.654.321-00</td>
+                        <td>R$ 350,00</td>
+                        <td>R$ 368,20</td>
+                        <td><span class="days-badge days-16-30">18 dias</span></td>
+                        <td><span class="badge medio">Médio</span></td>
+                        <td><span class="badge fase1">Fase 1</span></td>
+                        <td><span class="badge serasa-nao">Não</span></td>
+                        <td>WhatsApp em 22/09</td>
+                        <td>Ligação em 28/09</td>
+                        <td>
+                            <select class="status-select">
+                                <option selected>Aguardando resposta</option>
+                                <option>Em negociação</option>
+                                <option>Acordo fechado</option>
+                                <option>Inadimplente</option>
+                            </select>
+                        </td>
+                        <td>Sem retorno ainda</td>
+                        <td class="actions">
+                            <button class="btn-action btn-script">📄</button>
+                            <button class="btn-action btn-edit">✏️</button>
+                            <button class="btn-action btn-delete">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr class="highlight-serasa">
+                        <td><strong>Carlos Oliveira</strong></td>
+                        <td>456.789.123-00</td>
+                        <td>R$ 800,00</td>
+                        <td>R$ 924,50</td>
+                        <td><span class="days-badge days-90plus">135 dias</span></td>
+                        <td><span class="badge alto">Alto</span></td>
+                        <td><span class="badge fase3">Fase 3</span></td>
+                        <td><span class="badge serasa-sim">Sim</span></td>
+                        <td>Ligação em 15/09</td>
+                        <td>WhatsApp em 26/09</td>
+                        <td>
+                            <select class="status-select">
+                                <option selected>Em negociação</option>
+                                <option>Aguardando resposta</option>
+                                <option>Acordo fechado</option>
+                                <option>Inadimplente</option>
+                            </select>
+                        </td>
+                        <td>Propôs 6x de R$ 120</td>
+                        <td class="actions">
+                            <button class="btn-action btn-script">📄</button>
+                            <button class="btn-action btn-edit">✏️</button>
+                            <button class="btn-action btn-delete">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ana Paula Costa</strong></td>
+                        <td>321.654.987-00</td>
+                        <td>R$ 250,00</td>
+                        <td>R$ 259,60</td>
+                        <td><span class="days-badge days-0-15">8 dias</span></td>
+                        <td><span class="badge baixo">Baixo</span></td>
+                        <td><span class="badge fase1">Fase 1</span></td>
+                        <td><span class="badge serasa-nao">Não</span></td>
+                        <td>WhatsApp em 24/09</td>
+                        <td>E-mail em 01/10</td>
+                        <td>
+                            <select class="status-select">
+                                <option selected>Aguardando resposta</option>
+                                <option>Em negociação</option>
+                                <option>Acordo fechado</option>
+                                <option>Inadimplente</option>
+                            </select>
+                        </td>
+                        <td>Primeira tentativa</td>
+                        <td class="actions">
+                            <button class="btn-action btn-script">📄</button>
+                            <button class="btn-action btn-edit">✏️</button>
+                            <button class="btn-action btn-delete">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pedro Henrique Lima</strong></td>
+                        <td>789.123.456-00</td>
+                        <td>R$ 450,00</td>
+                        <td>R$ 478,90</td>
+                        <td><span class="days-badge days-16-30">25 dias</span></td>
+                        <td><span class="badge medio">Médio</span></td>
+                        <td><span class="badge fase1">Fase 1</span></td>
+                        <td><span class="badge serasa-nao">Não</span></td>
+                        <td>E-mail em 21/09</td>
+                        <td>WhatsApp em 26/09</td>
+                        <td>
+                            <select class="status-select">
+                                <option>Aguardando resposta</option>
+                                <option selected>Em negociação</option>
+                                <option>Acordo fechado</option>
+                                <option>Inadimplente</option>
+                            </select>
+                        </td>
+                        <td>Pediu 3x sem juros</td>
+                        <td class="actions">
+                            <button class="btn-action btn-script">📄</button>
+                            <button class="btn-action btn-edit">✏️</button>
+                            <button class="btn-action btn-delete">🗑️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Modal Adicionar/Editar -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Adicionar Novo Devedor</h2>
+            </div>
+            <form id="devedorForm">
+                <div class="form-group">
+                    <label>Nome Completo *</label>
+                    <input type="text" id="inputNome" required>
+                </div>
+                <div class="form-group">
+                    <label>CPF *</label>
+                    <input type="text" id="inputCPF" placeholder="000.000.000-00" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor Original (R$) *</label>
+                    <input type="number" id="inputValorOriginal" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor Atual (R$) *</label>
+                    <input type="number" id="inputValorAtual" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Dias de Atraso *</label>
+                    <input type="number" id="inputDiasAtraso" required>
+                </div>
+                <div class="form-group">
+                    <label>Perfil de Risco *</label>
+                    <select id="inputPerfil" required>
+                        <option value="">Selecione...</option>
+                        <option value="Baixo">Baixo Risco</option>
+                        <option value="Médio">Médio Risco</option>
+                        <option value="Alto">Alto Risco</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fase *</label>
+                    <select id="inputFase" required>
+                        <option value="">Selecione...</option>
+                        <option value="Fase 1">Fase 1 (0-30 dias)</option>
+                        <option value="Fase 2">Fase 2 (31-90 dias)</option>
+                        <option value="Fase 3">Fase 3 (91-180 dias)</option>
+                        <option value="Fase 4">Fase 4 (180+ dias)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>No SERASA? *</label>
+                    <select id="inputSerasa" required>
+                        <option value="Não">Não</option>
+                        <option value="Sim">Sim</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Última Ação</label>
+                    <input type="text" id="inputUltimaAcao" placeholder="Ex: WhatsApp em 20/09">
+                </div>
+                <div class="form-group">
+                    <label>Próxima Ação</label>
+                    <input type="text" id="inputProximaAcao" placeholder="Ex: E-mail em 27/09">
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="inputStatus">
+                        <option>Aguardando resposta</option>
+                        <option>Em negociação</option>
+                        <option>Acordo fechado</option>
+                        <option>Inadimplente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Reincidente?</label>
+                    <select id="inputReincidente">
+                        <option value="Não">Não</option>
+                        <option value="Sim">Sim</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea id="inputObservacoes" placeholder="Anotações importantes sobre o devedor..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">💾 Salvar</button>
+                    <button type="button" class="btn-cancel" id="btnCancel">❌ Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 🔧 CORREÇÕES APLICADAS:
+        // 1. Event listeners corretos usando DOMContentLoaded
+        // 2. Formatação adequada de números monetários
+        // 3. Delegation de eventos para botões dinâmicos
+        // 4. Correção na lógica de filtros
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // ✅ Inicializar estatísticas
+            updateStats();
+            
+            // ✅ Event Listeners para os botões principais
+            document.getElementById('btnAddDevedor').addEventListener('click', openModal);
+            document.getElementById('btnExport').addEventListener('click', exportToCSV);
+            document.getElementById('btnCancel').addEventListener('click', closeModal);
+            
+            // ✅ Event Listeners para filtros
+            document.getElementById('filterPerfil').addEventListener('change', filterTable);
+            document.getElementById('filterFase').addEventListener('change', filterTable);
+            document.getElementById('filterSerasa').addEventListener('change', filterTable);
+            document.getElementById('searchName').addEventListener('input', filterTable);
+            
+            // ✅ Delegation de eventos para botões dinâmicos da tabela
+            document.getElementById('tableBody').addEventListener('click', function(e) {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+                
+                if (btn.classList.contains('btn-delete')) {
+                    deleteRow(btn);
+                } else if (btn.classList.contains('btn-edit')) {
+                    editRow(btn);
+                } else if (btn.classList.contains('btn-script')) {
+                    showScript(btn);
+                }
+            });
+            
+            // ✅ Event Listener para o modal (fechar ao clicar fora)
+            document.getElementById('modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            // ✅ Event Listener para o formulário
+            document.getElementById('devedorForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveDevedor();
+            });
+        });
+
+        // ✅ Funções de Modal
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+            document.getElementById('modalTitle').textContent = 'Adicionar Novo Devedor';
+            document.getElementById('devedorForm').reset();
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // ✅ Função para salvar devedor (nova ou edição)
+        function saveDevedor() {
+            const nome = document.getElementById('inputNome').value;
+            const cpf = document.getElementById('inputCPF').value;
+            const valorOriginal = parseFloat(document.getElementById('inputValorOriginal').value);
+            const valorAtual = parseFloat(document.getElementById('inputValorAtual').value);
+            const diasAtraso = parseInt(document.getElementById('inputDiasAtraso').value);
+            const perfil = document.getElementById('inputPerfil').value;
+            const fase = document.getElementById('inputFase').value;
+            const serasa = document.getElementById('inputSerasa').value;
+            const ultimaAcao = document.getElementById('inputUltimaAcao').value;
+            const proximaAcao = document.getElementById('inputProximaAcao').value;
+            const status = document.getElementById('inputStatus').value;
+            const reincidente = document.getElementById('inputReincidente').value;
+            const observacoes = document.getElementById('inputObservacoes').value;
+
+            // Determinar classe do badge de dias
+            let daysBadgeClass = 'days-0-15';
+            if (diasAtraso > 90) daysBadgeClass = 'days-90plus';
+            else if (diasAtraso > 30) daysBadgeClass = 'days-31-90';
+            else if (diasAtraso > 15) daysBadgeClass = 'days-16-30';
+
+            // Determinar classes CSS
+            const perfilClass = perfil.toLowerCase();
+            const faseClass = fase.toLowerCase().replace(' ', '');
+            const serasaClass = serasa === 'Sim' ? 'serasa-sim' : 'serasa-nao';
+
+            const newRow = `
+                <tr ${serasa === 'Sim' ? 'class="highlight-serasa"' : ''}>
+                    <td><strong>${nome}</strong> ${reincidente === 'Sim' ? '<span class="badge reincidente">REINCIDENTE</span>' : ''}</td>
+                    <td>${cpf}</td>
+                    <td>R$ ${valorOriginal.toFixed(2).replace('.', ',')}</td>
+                    <td>R$ ${valorAtual.toFixed(2).replace('.', ',')}</td>
+                    <td><span class="days-badge ${daysBadgeClass}">${diasAtraso} dias</span></td>
+                    <td><span class="badge ${perfilClass}">${perfil}</span></td>
+                    <td><span class="badge ${faseClass}">${fase}</span></td>
+                    <td><span class="badge ${serasaClass}">${serasa}</span></td>
+                    <td>${ultimaAcao}</td>
+                    <td>${proximaAcao}</td>
+                    <td>
+                        <select class="status-select">
+                            <option ${status === 'Aguardando resposta' ? 'selected' : ''}>Aguardando resposta</option>
+                            <option ${status === 'Em negociação' ? 'selected' : ''}>Em negociação</option>
+                            <option ${status === 'Acordo fechado' ? 'selected' : ''}>Acordo fechado</option>
+                            <option ${status === 'Inadimplente' ? 'selected' : ''}>Inadimplente</option>
+                        </select>
+                    </td>
+                    <td>${observacoes}</td>
+                    <td class="actions">
+                        <button class="btn-action btn-script">📄</button>
+                        <button class="btn-action btn-edit">✏️</button>
+                        <button class="btn-action btn-delete">🗑️</button>
+                    </td>
+                </tr>
+            `;
+
+            document.getElementById('tableBody').insertAdjacentHTML('beforeend', newRow);
+            updateStats();
+            closeModal();
+            alert('✅ Devedor adicionado com sucesso!');
+        }
+
+        // ✅ Função para deletar linha
+        function deleteRow(btn) {
+            if (confirm('❌ Tem certeza que deseja excluir este devedor?')) {
+                btn.closest('tr').remove();
+                updateStats();
+                alert('✅ Devedor removido com sucesso!');
+            }
+        }
+
+        // ✅ Função para editar linha
+        function editRow(btn) {
+            const row = btn.closest('tr');
+            const cells = row.cells;
+            
+            // Preencher modal com dados da linha
+            document.getElementById('inputNome').value = cells[0].querySelector('strong').textContent;
+            document.getElementById('inputCPF').value = cells[1].textContent;
+            document.getElementById('inputValorOriginal').value = cells[2].textContent.replace('R$ ', '').replace(',', '.');
+            document.getElementById('inputValorAtual').value = cells[3].textContent.replace('R$ ', '').replace(',', '.');
+            document.getElementById('inputDiasAtraso').value = cells[4].textContent.replace(' dias', '');
+            document.getElementById('inputPerfil').value = cells[5].textContent.trim();
+            document.getElementById('inputFase').value = cells[6].textContent.trim();
+            document.getElementById('inputSerasa').value = cells[7].textContent.trim();
+            document.getElementById('inputUltimaAcao').value = cells[8].textContent;
+            document.getElementById('inputProximaAcao').value = cells[9].textContent;
+            document.getElementById('inputStatus').value = cells[10].querySelector('select').value;
+            document.getElementById('inputObservacoes').value = cells[11].textContent;
+            
+            // Verificar se é reincidente
+            const isReincidente = cells[0].querySelector('.reincidente') !== null;
+            document.getElementById('inputReincidente').value = isReincidente ? 'Sim' : 'Não';
+            
+            openModal();
+            document.getElementById('modalTitle').textContent = 'Editar Devedor';
+            
+            // Remover linha antiga após salvar
+            const originalSubmit = document.getElementById('devedorForm').onsubmit;
+            document.getElementById('devedorForm').onsubmit = function(e) {
+                e.preventDefault();
+                row.remove();
+                document.getElementById('devedorForm').onsubmit = originalSubmit;
+                saveDevedor();
+            };
+        }
+
+        // ✅ Função para mostrar script
+        function showScript(btn) {
+            const row = btn.closest('tr');
+            const nome = row.cells[0].querySelector('strong').textContent;
+            const perfil = row.cells[5].textContent.trim();
+            const fase = row.cells[6].textContent.trim();
+            const serasa = row.cells[7].textContent.trim();
+            
+            let scriptType = 'inicial';
+            if (fase.includes('2') || fase.includes('3')) {
+                scriptType = serasa === 'Sim' ? 'serasa' : 'moderado';
+            } else if (fase.includes('4')) {
+                scriptType = 'final';
+            }
+            
+            alert(`📄 SCRIPT SUGERIDO PARA ${nome}\n\nPerfil: ${perfil}\nFase: ${fase}\nSERASA: ${serasa}\n\n💡 Abra o Sistema de Cobrança principal para ver os scripts completos personalizados para este perfil e fase!`);
+        }
+
+        // ✅ Função para filtrar tabela
+        function filterTable() {
+            const filterPerfil = document.getElementById('filterPerfil').value.toLowerCase();
+            const filterFase = document.getElementById('filterFase').value.toLowerCase();
+            const filterSerasa = document.getElementById('filterSerasa').value;
+            const searchName = document.getElementById('searchName').value.toLowerCase();
+            
+            const rows = document.querySelectorAll('#tableBody tr');
+            
+            rows.forEach(row => {
+                const nome = row.cells[0].textContent.toLowerCase();
+                const perfil = row.cells[5].textContent.toLowerCase();
+                const fase = row.cells[6].textContent.toLowerCase();
+                const serasa = row.cells[7].textContent.trim();
+                
+                const matchPerfil = !filterPerfil || perfil.includes(filterPerfil);
+                const matchFase = !filterFase || fase.includes(filterFase);
+                const matchSerasa = !filterSerasa || serasa === filterSerasa;
+                const matchName = !searchName || nome.includes(searchName);
+                
+                if (matchPerfil && matchFase && matchSerasa && matchName) {
+                    row.style.display = '';
+                } else {
