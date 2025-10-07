@@ -11,6 +11,7 @@
             box-sizing: border-box;
         }
         
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -18,6 +19,7 @@
             min-height: 100vh;
         }
         
+
         .container {
             max-width: 1600px;
             margin: 0 auto;
@@ -27,6 +29,7 @@
             overflow: hidden;
         }
         
+
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -34,16 +37,19 @@
             text-align: center;
         }
         
+
         .header h1 {
             font-size: 28px;
             margin-bottom: 10px;
         }
         
+
         .header p {
             font-size: 14px;
             opacity: 0.9;
         }
         
+
         .controls {
             padding: 20px 30px;
             background: #f8f9fa;
@@ -54,6 +60,7 @@
             border-bottom: 2px solid #e0e0e0;
         }
         
+
         .controls button {
             padding: 10px 20px;
             border: none;
@@ -64,25 +71,48 @@
             font-size: 14px;
         }
         
+
         .btn-add {
             background: #10b981;
             color: white;
         }
         
+
         .btn-add:hover {
             background: #059669;
             transform: translateY(-2px);
         }
         
+
         .btn-export {
             background: #3b82f6;
             color: white;
         }
         
+
         .btn-export:hover {
             background: #2563eb;
         }
         
+
+        .btn-secondary {
+            background: #0ea5e9;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0284c7;
+        }
+
+        .btn-neutral {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .btn-neutral:hover {
+            background: #cbd5f5;
+        }
+
         .filter-group {
             display: flex;
             gap: 10px;
@@ -90,20 +120,26 @@
         }
         
         .filter-group select, .filter-group input {
+
+        .filter-group select,
+        .filter-group input {
             padding: 8px 12px;
             border: 2px solid #e0e0e0;
             border-radius: 6px;
             font-size: 14px;
         }
         
+
         .stats {
             padding: 20px 30px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
             background: #f8f9fa;
         }
         
+
         .stat-card {
             background: white;
             padding: 15px;
@@ -112,11 +148,13 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
+
         .stat-card.total { border-color: #3b82f6; }
         .stat-card.pending { border-color: #f59e0b; }
         .stat-card.serasa { border-color: #ef4444; }
         .stat-card.recovered { border-color: #10b981; }
         
+
         .stat-card h3 {
             font-size: 12px;
             color: #64748b;
@@ -124,23 +162,27 @@
             text-transform: uppercase;
         }
         
+
         .stat-card p {
             font-size: 24px;
             font-weight: bold;
             color: #1e293b;
         }
         
+
         .table-container {
             overflow-x: auto;
             padding: 30px;
         }
         
+
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
         }
         
+
         thead {
             background: #1e293b;
             color: white;
@@ -149,28 +191,34 @@
             z-index: 10;
         }
         
+
         th {
             padding: 12px 8px;
             text-align: left;
             font-weight: 600;
             font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         
+
         td {
             padding: 12px 8px;
             border-bottom: 1px solid #e5e7eb;
         }
         
+
         tbody tr {
             transition: background 0.2s;
         }
         
+
         tbody tr:hover {
             background: #f1f5f9;
         }
         
+
         .badge {
             display: inline-block;
             padding: 4px 10px;
@@ -180,6 +228,7 @@
             text-transform: uppercase;
         }
         
+
         .badge.baixo { background: #d1fae5; color: #065f46; }
         .badge.medio { background: #fef3c7; color: #92400e; }
         .badge.alto { background: #fee2e2; color: #991b1b; }
@@ -191,6 +240,7 @@
         .badge.serasa-nao { background: #d1fae5; color: #065f46; }
         .badge.reincidente { background: #fecaca; color: #991b1b; font-weight: 700; }
         
+
         .status-select {
             padding: 6px 10px;
             border: 2px solid #e0e0e0;
@@ -199,11 +249,14 @@
             cursor: pointer;
         }
         
+
         .actions {
             display: flex;
             gap: 5px;
+            gap: 6px;
         }
         
+
         .btn-action {
             padding: 6px 10px;
             border: none;
@@ -241,6 +294,16 @@
             background: #059669;
         }
         
+
+        .btn-edit { background: #3b82f6; color: white; }
+        .btn-edit:hover { background: #2563eb; }
+        .btn-delete { background: #ef4444; color: white; }
+        .btn-delete:hover { background: #dc2626; }
+        .btn-script { background: #10b981; color: white; }
+        .btn-script:hover { background: #059669; }
+        .btn-send { background: #8b5cf6; color: white; }
+        .btn-send:hover { background: #7c3aed; }
+
         .modal {
             display: none;
             position: fixed;
@@ -252,12 +315,16 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
         
         .modal.active {
             display: flex;
         }
         
+
+        .modal.active { display: flex; }
+
         .modal-content {
             background: white;
             padding: 30px;
@@ -265,22 +332,29 @@
             max-width: 600px;
             width: 90%;
             max-height: 80vh;
+            max-width: 800px;
+            width: 100%;
+            max-height: 85vh;
             overflow-y: auto;
         }
         
+
         .modal-header {
             margin-bottom: 20px;
         }
         
+
         .modal-header h2 {
             font-size: 24px;
             color: #1e293b;
         }
         
+
         .form-group {
             margin-bottom: 15px;
         }
         
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
@@ -290,6 +364,10 @@
         }
         
         .form-group input, .form-group select, .form-group textarea {
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 10px;
             border: 2px solid #e0e0e0;
@@ -297,19 +375,32 @@
             font-size: 14px;
         }
         
+
         .form-group textarea {
             min-height: 100px;
+            min-height: 120px;
             resize: vertical;
         }
         
+
+        .form-group small {
+            display: block;
+            margin-top: 4px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
         .form-actions {
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
         
+
         .form-actions button {
             flex: 1;
+            min-width: 150px;
             padding: 12px;
             border: none;
             border-radius: 6px;
@@ -332,6 +423,12 @@
             background: #fee2e2 !important;
         }
         
+
+        .btn-save { background: #10b981; color: white; }
+        .btn-cancel { background: #64748b; color: white; }
+
+        .highlight-serasa { background: #fee2e2 !important; }
+
         .days-badge {
             display: inline-block;
             padding: 4px 8px;
@@ -340,11 +437,54 @@
             font-weight: 600;
         }
         
+
         .days-0-15 { background: #d1fae5; color: #065f46; }
         .days-16-30 { background: #fef3c7; color: #92400e; }
         .days-31-90 { background: #fed7aa; color: #9a3412; }
         .days-90plus { background: #fecaca; color: #991b1b; }
+
+        .badge-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #e2e8f0;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #475569;
+            margin-top: 4px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        .template-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .template-toolbar select {
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .modal-small .modal-content {
+            max-width: 500px;
+        }
+
+        .copy-button {
+            background: #1e40af;
+            color: white;
+        }
+
+        .copy-button:hover {
+            background: #1e3a8a;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -353,10 +493,17 @@
             <p>Gestão Completa de Inadimplentes | Empréstimos Consignados</p>
         </div>
         
+
         <div class="controls">
             <button class="btn-add" id="btnAddDevedor">➕ Adicionar Devedor</button>
             <button class="btn-export" id="btnExport">📥 Exportar CSV</button>
             
+            <button class="btn-secondary" id="btnImport">📂 Importar CSV</button>
+            <button class="btn-neutral" id="btnRisk">⚖️ Diretrizes de Risco</button>
+            <button class="btn-neutral" id="btnBilling">📋 Diretrizes de Cobrança</button>
+            <button class="btn-neutral" id="btnTemplates">📝 Templates de Mensagens</button>
+            <button class="btn-neutral" id="btnEmailConfig">✉️ Configurar E-mail</button>
+
             <div class="filter-group">
                 <select id="filterPerfil">
                     <option value="">Todos os Perfis</option>
@@ -365,6 +512,7 @@
                     <option value="Alto">Alto Risco</option>
                 </select>
                 
+
                 <select id="filterFase">
                     <option value="">Todas as Fases</option>
                     <option value="Fase 1">Fase 1 (0-30 dias)</option>
@@ -373,6 +521,7 @@
                     <option value="Fase 4">Fase 4 (180+ dias)</option>
                 </select>
                 
+
                 <select id="filterSerasa">
                     <option value="">Status SERASA</option>
                     <option value="Sim">No SERASA</option>
@@ -380,39 +529,57 @@
                 </select>
                 
                 <input type="text" id="searchName" placeholder="🔍 Buscar por nome..." style="width: 200px;">
+
+                <input type="text" id="searchName" placeholder="🔍 Buscar por nome..." style="width: 220px;">
             </div>
         </div>
         
+
         <div class="stats">
             <div class="stat-card total">
                 <h3>Total de Devedores</h3>
                 <p id="statTotal">5</p>
+                <p id="statTotal">0</p>
             </div>
             <div class="stat-card pending">
                 <h3>Valor Total Pendente</h3>
                 <p id="statPending">R$ 2.450,00</p>
+                <p id="statPending">R$ 0,00</p>
             </div>
             <div class="stat-card serasa">
                 <h3>Inscritos SERASA</h3>
                 <p id="statSerasa">2</p>
+                <p id="statSerasa">0</p>
             </div>
             <div class="stat-card recovered">
                 <h3>Recuperado no Mês</h3>
                 <p id="statRecovered">R$ 850,00</p>
+                <h3>Total Pago</h3>
+                <p id="statPaid">R$ 0,00</p>
             </div>
         </div>
         
+
         <div class="table-container">
             <table id="mainTable">
                 <thead>
                     <tr>
                         <th>Nome</th>
                         <th>CPF</th>
+                        <th>E-mail</th>
+                        <th>WhatsApp</th>
+                        <th>Categoria</th>
                         <th>Valor Original</th>
+                        <th>Valor Depositado</th>
+                        <th>Valor Pago</th>
                         <th>Valor Atual</th>
                         <th>Dias Atraso</th>
+                        <th>Vencimento</th>
+                        <th>Taxa Juros (%)</th>
                         <th>Perfil Risco</th>
                         <th>Fase</th>
+                        <th>Inscrições SERASA</th>
+                        <th>Dívida no SERASA</th>
                         <th>SERASA</th>
                         <th>Última Ação</th>
                         <th>Próxima Ação</th>
@@ -553,11 +720,14 @@
                         </td>
                     </tr>
                 </tbody>
+                <tbody id="tableBody"></tbody>
             </table>
         </div>
     </div>
     
     <!-- Modal Adicionar/Editar -->
+
+    <!-- Modal Devedor -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -579,10 +749,125 @@
                 <div class="form-group">
                     <label>Valor Atual (R$) *</label>
                     <input type="number" id="inputValorAtual" step="0.01" required>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="inputNome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CPF *</label>
+                        <input type="text" id="inputCPF" placeholder="000.000.000-00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail *</label>
+                        <input type="email" id="inputEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp *</label>
+                        <input type="tel" id="inputWhatsapp" placeholder="(00) 90000-0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoria do Empréstimo *</label>
+                        <select id="inputCategoria" required>
+                            <option value="">Selecione...</option>
+                            <option value="Consignado">Consignado</option>
+                            <option value="Adiantamento Salarial">Adiantamento Salarial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Taxa de Juros (%) *</label>
+                        <input type="number" id="inputTaxaJuros" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Valor Original (R$) *</label>
+                        <input type="number" id="inputValorOriginal" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Valor Depositado (R$) *</label>
+                        <input type="number" id="inputValorDepositado" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Valor Pago (R$)</label>
+                        <input type="number" id="inputValorPago" step="0.01" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Valor Atual (R$) *</label>
+                        <input type="number" id="inputValorAtual" step="0.01" required>
+                        <small>Valor atualizado com juros e descontos aplicados.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Data de Vencimento *</label>
+                        <input type="date" id="inputVencimento" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Dias de Atraso *</label>
+                        <input type="number" id="inputDiasAtraso" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Perfil de Risco *</label>
+                        <select id="inputPerfil" required>
+                            <option value="">Selecione...</option>
+                            <option value="Baixo">Baixo Risco</option>
+                            <option value="Médio">Médio Risco</option>
+                            <option value="Alto">Alto Risco</option>
+                        </select>
+                        <small id="perfilSugestao"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Fase *</label>
+                        <select id="inputFase" required>
+                            <option value="">Selecione...</option>
+                            <option value="Fase 1">Fase 1 (0-30 dias)</option>
+                            <option value="Fase 2">Fase 2 (31-90 dias)</option>
+                            <option value="Fase 3">Fase 3 (91-180 dias)</option>
+                            <option value="Fase 4">Fase 4 (180+ dias)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantidade de Inscrições no SERASA *</label>
+                        <input type="number" id="inputInscricoesSerasa" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Valor da Dívida no SERASA (R$)</label>
+                        <input type="number" id="inputDividaSerasa" step="0.01" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>No SERASA? *</label>
+                        <select id="inputSerasa" required>
+                            <option value="Não">Não</option>
+                            <option value="Sim">Sim</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Última Ação</label>
+                        <input type="text" id="inputUltimaAcao" placeholder="Ex: WhatsApp em 20/09">
+                    </div>
+                    <div class="form-group">
+                        <label>Próxima Ação</label>
+                        <input type="text" id="inputProximaAcao" placeholder="Ex: E-mail em 27/09">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="inputStatus">
+                            <option>Aguardando resposta</option>
+                            <option>Em negociação</option>
+                            <option>Acordo fechado</option>
+                            <option>Inadimplente</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Reincidente?</label>
+                        <select id="inputReincidente">
+                            <option value="Não">Não</option>
+                            <option value="Sim">Sim</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Dias de Atraso *</label>
                     <input type="number" id="inputDiasAtraso" required>
+                    <label>Observações</label>
+                    <textarea id="inputObservacoes" placeholder="Anotações importantes sobre o devedor..."></textarea>
                 </div>
                 <div class="form-group">
                     <label>Perfil de Risco *</label>
@@ -592,6 +877,9 @@
                         <option value="Médio">Médio Risco</option>
                         <option value="Alto">Alto Risco</option>
                     </select>
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">💾 Salvar</button>
+                    <button type="button" class="btn-cancel" id="btnCancel">❌ Cancelar</button>
                 </div>
                 <div class="form-group">
                     <label>Fase *</label>
@@ -602,6 +890,72 @@
                         <option value="Fase 3">Fase 3 (91-180 dias)</option>
                         <option value="Fase 4">Fase 4 (180+ dias)</option>
                     </select>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Templates -->
+    <div id="modalTemplates" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Templates de Mensagens</h2>
+                <p>Personalize o conteúdo enviado por E-mail e WhatsApp conforme risco e fase da cobrança.</p>
+            </div>
+            <div class="template-toolbar">
+                <select id="templateChannel">
+                    <option value="email">E-mail</option>
+                    <option value="whatsapp">WhatsApp</option>
+                </select>
+                <select id="templateRisk">
+                    <option value="baixo">Baixo risco</option>
+                    <option value="medio">Médio risco</option>
+                    <option value="alto">Alto risco</option>
+                </select>
+                <select id="templatePhase">
+                    <option value="fase1">Fase 1</option>
+                    <option value="fase2">Fase 2</option>
+                    <option value="fase3">Fase 3</option>
+                    <option value="fase4">Fase 4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mensagem</label>
+                <textarea id="templateContent"></textarea>
+                <small>Use variáveis como {{nome}}, {{valor_atual}}, {{valor_descontado}}, {{desconto_percentual}}, {{parcelas_maximas}}, {{valor_parcela}}, {{dias_atraso}}, {{fase}}, {{perfil}} e {{vencimento}}.</small>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-save" id="btnSaveTemplate">💾 Salvar Template</button>
+                <button type="button" class="btn-neutral" id="btnRestoreTemplate">↩️ Restaurar Padrão</button>
+                <button type="button" class="btn-cancel" data-close="modalTemplates">❌ Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Diretrizes de Risco -->
+    <div id="modalRisk" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Diretrizes de Classificação de Risco</h2>
+                <p>Defina limites para enquadrar automaticamente os perfis conforme inscrições e dívida no SERASA.</p>
+            </div>
+            <form id="riskForm">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Limite de Inscrições (Baixo Risco)</label>
+                        <input type="number" id="riskBaixoInscricoes" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Valor Máximo de Dívida (Baixo Risco)</label>
+                        <input type="number" id="riskBaixoValor" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Limite de Inscrições (Médio Risco)</label>
+                        <input type="number" id="riskMedioInscricoes" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Valor Máximo de Dívida (Médio Risco)</label>
+                        <input type="number" id="riskMedioValor" step="0.01">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>No SERASA? *</label>
@@ -609,15 +963,71 @@
                         <option value="Não">Não</option>
                         <option value="Sim">Sim</option>
                     </select>
+                <small class="badge-tag">Acima dos limites de médio risco o cliente será classificado como alto risco.</small>
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">💾 Salvar Diretrizes</button>
+                    <button type="button" class="btn-cancel" data-close="modalRisk">❌ Fechar</button>
                 </div>
                 <div class="form-group">
                     <label>Última Ação</label>
                     <input type="text" id="inputUltimaAcao" placeholder="Ex: WhatsApp em 20/09">
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Diretrizes de Cobrança -->
+    <div id="modalBilling" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Diretrizes de Cobrança</h2>
+                <p>Configure descontos máximos e parcelamentos conforme o perfil de risco.</p>
+            </div>
+            <form id="billingForm">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Baixo Risco - Desconto Máximo (%)</label>
+                        <input type="number" id="billingBaixoDesconto" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Baixo Risco - Parcelas Máximas</label>
+                        <input type="number" id="billingBaixoParcelas" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Médio Risco - Desconto Máximo (%)</label>
+                        <input type="number" id="billingMedioDesconto" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Médio Risco - Parcelas Máximas</label>
+                        <input type="number" id="billingMedioParcelas" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Alto Risco - Desconto Máximo (%)</label>
+                        <input type="number" id="billingAltoDesconto" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Alto Risco - Parcelas Máximas</label>
+                        <input type="number" id="billingAltoParcelas" min="1">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Próxima Ação</label>
                     <input type="text" id="inputProximaAcao" placeholder="Ex: E-mail em 27/09">
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">💾 Salvar Diretrizes</button>
+                    <button type="button" class="btn-cancel" data-close="modalBilling">❌ Fechar</button>
                 </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Configuração de E-mail -->
+    <div id="modalEmailConfig" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuração de Envio de E-mails</h2>
+                <p>Informe os dados do EmailJS (ou serviço equivalente) para permitir o disparo automático.</p>
+            </div>
+            <form id="emailConfigForm">
                 <div class="form-group">
                     <label>Status</label>
                     <select id="inputStatus">
@@ -626,6 +1036,8 @@
                         <option>Acordo fechado</option>
                         <option>Inadimplente</option>
                     </select>
+                    <label>Service ID</label>
+                    <input type="text" id="emailServiceId" placeholder="Ex: service_xxxxx">
                 </div>
                 <div class="form-group">
                     <label>Reincidente?</label>
@@ -633,18 +1045,53 @@
                         <option value="Não">Não</option>
                         <option value="Sim">Sim</option>
                     </select>
+                    <label>Template ID</label>
+                    <input type="text" id="emailTemplateId" placeholder="Ex: template_xxxxx">
                 </div>
                 <div class="form-group">
                     <label>Observações</label>
                     <textarea id="inputObservacoes" placeholder="Anotações importantes sobre o devedor..."></textarea>
+                    <label>Public Key</label>
+                    <input type="text" id="emailPublicKey" placeholder="Ex: 123ABC456DEF">
                 </div>
+                <small class="badge-tag">Os dados ficam armazenados apenas localmente (localStorage).</small>
                 <div class="form-actions">
                     <button type="submit" class="btn-save">💾 Salvar</button>
                     <button type="button" class="btn-cancel" id="btnCancel">❌ Cancelar</button>
+                    <button type="submit" class="btn-save">💾 Salvar Configurações</button>
+                    <button type="button" class="btn-neutral" id="btnTestEmail">✉️ Enviar teste</button>
+                    <button type="button" class="btn-cancel" data-close="modalEmailConfig">❌ Fechar</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- Modal Mensagem -->
+    <div id="modalMessage" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2 id="messageTitle">Mensagem</h2>
+            </div>
+            <div class="form-group">
+                <label>Canal</label>
+                <select id="messageChannel">
+                    <option value="email">E-mail</option>
+                    <option value="whatsapp">WhatsApp</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mensagem Gerada</label>
+                <textarea id="messageContent" readonly></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="copy-button" id="btnCopyMessage">📋 Copiar</button>
+                <button type="button" class="btn-send" id="btnSendMessage">📨 Enviar</button>
+                <button type="button" class="btn-cancel" data-close="modalMessage">❌ Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="inputImport" accept=".csv" style="display:none">
 
     <script>
         // 🔧 CÓDIGO JAVASCRIPT CORRIGIDO - AGORA FUNCIONANDO!
@@ -656,10 +1103,208 @@
             
             // ✅ Event Listeners para os botões principais
             document.getElementById('btnAddDevedor').addEventListener('click', openModal);
+        const STORAGE_KEY = 'cobrancaSettings';
+        const defaultState = {
+            templates: {
+                email: {
+                    baixo: {
+                        fase1: 'Olá {{nome}},\nIdentificamos um débito em aberto de {{valor_atual}} com vencimento em {{vencimento}}. Podemos oferecer desconto de {{desconto_percentual}} chegando a {{valor_descontado}} ou parcelar em até {{parcelas_maximas}}x de {{valor_parcela}}.\nAguardamos seu retorno para finalizarmos o acordo.',
+                        fase2: 'Olá {{nome}},\nSua pendência de {{valor_atual}} está há {{dias_atraso}} dias em aberto. Podemos conceder {{desconto_percentual}} de desconto e parcelar em até {{parcelas_maximas}}x de {{valor_parcela}}. Responda este e-mail para regularizar.',
+                        fase3: 'Prezado(a) {{nome}},\nSua dívida de {{valor_atual}} segue pendente há {{dias_atraso}} dias. Última oportunidade com desconto de {{desconto_percentual}} e parcelamento em até {{parcelas_maximas}}x. Evite novas medidas e retorne ainda hoje.',
+                        fase4: 'Olá {{nome}},\nNotamos inadimplência prolongada ({{dias_atraso}} dias) referente a {{valor_atual}}. Antes de seguirmos com ações legais, oferecemos quitação por {{valor_descontado}} à vista ou parcelamento limitado a {{parcelas_maximas}}x. Contate-nos imediatamente.'
+                    },
+                    medio: {
+                        fase1: 'Olá {{nome}},\nSua parcela de {{valor_atual}} venceu em {{vencimento}}. Podemos ajustar com desconto de {{desconto_percentual}} e parcelar em até {{parcelas_maximas}}x. Retorne este e-mail para alinharmos.',
+                        fase2: 'Olá {{nome}},\nEstamos acompanhando {{dias_atraso}} dias de atraso. Podemos reduzir o valor para {{valor_descontado}} com entrada facilitada. Fale conosco para regularizar.',
+                        fase3: 'Prezamos pela parceria, {{nome}}. Sua dívida de {{valor_atual}} já está em fase avançada. Última proposta: {{desconto_percentual}} de desconto com parcelas até {{parcelas_maximas}}x. Aguardo retorno.',
+                        fase4: 'Olá {{nome}},\nSeu contrato está há {{dias_atraso}} dias em aberto. Para evitar negativação adicional, disponibilizamos quitação em {{valor_descontado}}. Entre em contato urgente.'
+                    },
+                    alto: {
+                        fase1: 'Olá {{nome}},\nIdentificamos atraso inicial de {{dias_atraso}} dias referente a {{valor_atual}}. Podemos negociar com entrada mínima e desconto especial. Retorne ainda hoje.',
+                        fase2: 'Prezada(o) {{nome}},\nSua dívida está em cobrança com {{dias_atraso}} dias de atraso. Oferta final: {{valor_descontado}} com até {{parcelas_maximas}} parcelas. Responda este contato.',
+                        fase3: 'Olá {{nome}},\nNotamos inadimplência grave. Negocie agora para evitar ações jurídicas. Valor atualizado: {{valor_atual}}, com proposta de {{valor_descontado}} à vista.',
+                        fase4: 'Senhor(a) {{nome}},\nProcesso em etapa crítica. Para quitar {{valor_atual}} oferecemos condição extraordinária de {{valor_descontado}}. Necessitamos de retorno imediato.'
+                    }
+                },
+                whatsapp: {
+                    baixo: {
+                        fase1: 'Olá {{nome}}! Tudo bem? Aqui é da cobrança. Temos um débito de {{valor_atual}} (venc. {{vencimento}}). Posso te oferecer {{desconto_percentual}} de desconto ou até {{parcelas_maximas}}x de {{valor_parcela}}. Me chama aqui para combinarmos?',
+                        fase2: '{{nome}}, passando para lembrar do débito de {{valor_atual}} ({{dias_atraso}} dias). Consigo fechar em {{valor_descontado}} ou {{parcelas_maximas}}x de {{valor_parcela}}. Posso registrar acordo agora?',
+                        fase3: 'Oi {{nome}}, estamos quase encerrando as negociações. Última proposta: {{desconto_percentual}} de desconto com parcelas em até {{parcelas_maximas}}x. Responde aqui para finalizarmos.',
+                        fase4: '{{nome}}, precisamos falar urgente. Sua dívida está há {{dias_atraso}} dias em aberto. Consigo quitar por {{valor_descontado}}. Retorne para evitar medidas adicionais.'
+                    },
+                    medio: {
+                        fase1: 'Olá {{nome}}! Seu contrato venceu e soma {{valor_atual}}. Posso ajustar para {{valor_descontado}} ou {{parcelas_maximas}}x de {{valor_parcela}}. Vamos conversar?',
+                        fase2: '{{nome}}, temos {{dias_atraso}} dias de atraso. Posso oferecer {{desconto_percentual}} de desconto se fechar hoje. Topa?',
+                        fase3: 'Oi {{nome}}, precisamos regularizar {{valor_atual}}. Último acordo: {{valor_descontado}} com até {{parcelas_maximas}} parcelas. Aguardo tua confirmação.',
+                        fase4: '{{nome}}, contamos com seu retorno urgente. Dívida de {{valor_atual}} em fase avançada. Aceita quitar por {{valor_descontado}} hoje?'
+                    },
+                    alto: {
+                        fase1: 'Olá {{nome}}. Temos atraso em {{valor_atual}}. Vamos resolver agora? Tenho condição especial se falar comigo hoje.',
+                        fase2: '{{nome}}, situação delicada: {{dias_atraso}} dias. Posso limitar para {{parcelas_maximas}}x com entrada mínima. Me chama por favor.',
+                        fase3: 'Precisamos regularizar {{valor_atual}}. Última proposta em {{valor_descontado}}. Evite negativações maiores.',
+                        fase4: '{{nome}}, caso crítico. Regularize já: {{valor_atual}} com acordo final de {{valor_descontado}}. Retorne agora.'
+                    }
+                }
+            },
+            riskGuidelines: {
+                baixo: { maxInscricoes: 1, maxValor: 500 },
+                medio: { maxInscricoes: 3, maxValor: 2000 }
+            },
+            billingGuidelines: {
+                baixo: { desconto: 15, parcelas: 12 },
+                medio: { desconto: 10, parcelas: 8 },
+                alto: { desconto: 5, parcelas: 4 }
+            },
+            emailConfig: {
+                serviceId: '',
+                templateId: '',
+                publicKey: ''
+            }
+        };
+        let appState = loadState();
+        let editingRow = null;
+        let currentMessageRow = null;
+
+        const seedDevedores = [
+            {
+                nome: 'João Silva',
+                cpf: '123.456.789-00',
+                email: 'joao.silva@email.com',
+                whatsapp: '(11) 98888-0000',
+                categoria: 'Consignado',
+                taxaJuros: 2.5,
+                valorOriginal: 500,
+                valorDepositado: 480,
+                valorPago: 120,
+                valorAtual: 545.8,
+                diasAtraso: 42,
+                vencimento: '2023-08-15',
+                perfil: 'Baixo',
+                fase: 'Fase 2',
+                inscricoesSerasa: 2,
+                dividaSerasa: 300,
+                serasa: 'Sim',
+                ultimaAcao: 'WhatsApp em 20/09',
+                proximaAcao: 'E-mail em 27/09',
+                status: 'Em negociação',
+                reincidente: 'Sim',
+                observacoes: 'Prometeu pagar dia 30'
+            },
+            {
+                nome: 'Maria Santos',
+                cpf: '987.654.321-00',
+                email: 'maria.santos@email.com',
+                whatsapp: '(21) 97777-1111',
+                categoria: 'Adiantamento Salarial',
+                taxaJuros: 3.1,
+                valorOriginal: 350,
+                valorDepositado: 332.5,
+                valorPago: 0,
+                valorAtual: 368.2,
+                diasAtraso: 18,
+                vencimento: '2023-09-10',
+                perfil: 'Médio',
+                fase: 'Fase 1',
+                inscricoesSerasa: 1,
+                dividaSerasa: 0,
+                serasa: 'Não',
+                ultimaAcao: 'WhatsApp em 22/09',
+                proximaAcao: 'Ligação em 28/09',
+                status: 'Aguardando resposta',
+                reincidente: 'Não',
+                observacoes: 'Sem retorno ainda'
+            },
+            {
+                nome: 'Carlos Oliveira',
+                cpf: '456.789.123-00',
+                email: 'carlos.oliveira@email.com',
+                whatsapp: '(31) 96666-2222',
+                categoria: 'Consignado',
+                taxaJuros: 2.8,
+                valorOriginal: 800,
+                valorDepositado: 760,
+                valorPago: 200,
+                valorAtual: 924.5,
+                diasAtraso: 135,
+                vencimento: '2023-05-20',
+                perfil: 'Alto',
+                fase: 'Fase 3',
+                inscricoesSerasa: 4,
+                dividaSerasa: 900,
+                serasa: 'Sim',
+                ultimaAcao: 'Ligação em 15/09',
+                proximaAcao: 'WhatsApp em 26/09',
+                status: 'Em negociação',
+                reincidente: 'Não',
+                observacoes: 'Propôs 6x de R$ 120'
+            },
+            {
+                nome: 'Ana Paula Costa',
+                cpf: '321.654.987-00',
+                email: 'ana.costa@email.com',
+                whatsapp: '(41) 95555-3333',
+                categoria: 'Adiantamento Salarial',
+                taxaJuros: 2.2,
+                valorOriginal: 250,
+                valorDepositado: 240,
+                valorPago: 50,
+                valorAtual: 259.6,
+                diasAtraso: 8,
+                vencimento: '2023-09-20',
+                perfil: 'Baixo',
+                fase: 'Fase 1',
+                inscricoesSerasa: 0,
+                dividaSerasa: 0,
+                serasa: 'Não',
+                ultimaAcao: 'WhatsApp em 24/09',
+                proximaAcao: 'E-mail em 01/10',
+                status: 'Aguardando resposta',
+                reincidente: 'Não',
+                observacoes: 'Primeira tentativa'
+            },
+            {
+                nome: 'Pedro Henrique Lima',
+                cpf: '789.123.456-00',
+                email: 'pedro.lima@email.com',
+                whatsapp: '(51) 94444-5555',
+                categoria: 'Consignado',
+                taxaJuros: 3.3,
+                valorOriginal: 450,
+                valorDepositado: 430,
+                valorPago: 0,
+                valorAtual: 478.9,
+                diasAtraso: 25,
+                vencimento: '2023-09-05',
+                perfil: 'Médio',
+                fase: 'Fase 1',
+                inscricoesSerasa: 1,
+                dividaSerasa: 0,
+                serasa: 'Não',
+                ultimaAcao: 'E-mail em 21/09',
+                proximaAcao: 'WhatsApp em 26/09',
+                status: 'Em negociação',
+                reincidente: 'Não',
+                observacoes: 'Pediu 3x sem juros'
+            }
+        ];
+        document.addEventListener('DOMContentLoaded', () => {
+            if (appState.emailConfig.publicKey) {
+                emailjs.init(appState.emailConfig.publicKey);
+            }
+
+            document.getElementById('btnAddDevedor').addEventListener('click', () => openDevedorModal());
             document.getElementById('btnExport').addEventListener('click', exportToCSV);
             document.getElementById('btnCancel').addEventListener('click', closeModal);
             
             // ✅ Event Listeners para filtros
+            document.getElementById('btnImport').addEventListener('click', () => document.getElementById('inputImport').click());
+            document.getElementById('btnRisk').addEventListener('click', () => openModal('modalRisk'));
+            document.getElementById('btnBilling').addEventListener('click', () => openModal('modalBilling'));
+            document.getElementById('btnTemplates').addEventListener('click', openTemplateModal);
+            document.getElementById('btnEmailConfig').addEventListener('click', openEmailConfigModal);
+            document.getElementById('btnCancel').addEventListener('click', closeDevedorModal);
+
             document.getElementById('filterPerfil').addEventListener('change', filterTable);
             document.getElementById('filterFase').addEventListener('change', filterTable);
             document.getElementById('filterSerasa').addEventListener('change', filterTable);
@@ -691,16 +1336,89 @@
                 e.preventDefault();
                 saveDevedor();
             });
+
+            document.getElementById('tableBody').addEventListener('click', handleTableClick);
+            document.getElementById('modal').addEventListener('click', handleBackdrop);
+            document.getElementById('modalTemplates').addEventListener('click', handleBackdrop);
+            document.getElementById('modalRisk').addEventListener('click', handleBackdrop);
+            document.getElementById('modalBilling').addEventListener('click', handleBackdrop);
+            document.getElementById('modalEmailConfig').addEventListener('click', handleBackdrop);
+            document.getElementById('modalMessage').addEventListener('click', handleBackdrop);
+
+            document.getElementById('devedorForm').addEventListener('submit', submitDevedorForm);
+            document.getElementById('riskForm').addEventListener('submit', submitRiskForm);
+            document.getElementById('billingForm').addEventListener('submit', submitBillingForm);
+            document.getElementById('emailConfigForm').addEventListener('submit', submitEmailConfigForm);
+            document.getElementById('btnTestEmail').addEventListener('click', sendTestEmail);
+            document.getElementById('btnSaveTemplate').addEventListener('click', saveTemplateContent);
+            document.getElementById('btnRestoreTemplate').addEventListener('click', restoreDefaultTemplate);
+            document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close'))));
+            document.getElementById('templateChannel').addEventListener('change', loadSelectedTemplate);
+            document.getElementById('templateRisk').addEventListener('change', loadSelectedTemplate);
+            document.getElementById('templatePhase').addEventListener('change', loadSelectedTemplate);
+            document.getElementById('messageChannel').addEventListener('change', updateMessagePreview);
+            document.getElementById('btnCopyMessage').addEventListener('click', copyMessageToClipboard);
+            document.getElementById('btnSendMessage').addEventListener('click', triggerSendMessage);
+            document.getElementById('inputImport').addEventListener('change', handleImport);
+            document.getElementById('inputInscricoesSerasa').addEventListener('input', sugerirPerfil);
+            document.getElementById('inputDividaSerasa').addEventListener('input', sugerirPerfil);
+
+            loadFormsFromState();
+            seedDevedores.forEach(addDevedorRow);
+            updateStats();
         });
 
         // ✅ Funções de Modal
         function openModal() {
             document.getElementById('modal').classList.add('active');
             document.getElementById('modalTitle').textContent = 'Adicionar Novo Devedor';
+        function loadState() {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (!stored) return JSON.parse(JSON.stringify(defaultState));
+                const parsed = JSON.parse(stored);
+                return {
+                    templates: mergeDeep(JSON.parse(JSON.stringify(defaultState.templates)), parsed.templates || {}),
+                    riskGuidelines: Object.assign({}, defaultState.riskGuidelines, parsed.riskGuidelines || {}),
+                    billingGuidelines: Object.assign({}, defaultState.billingGuidelines, parsed.billingGuidelines || {}),
+                    emailConfig: Object.assign({}, defaultState.emailConfig, parsed.emailConfig || {})
+                };
+            } catch (error) {
+                console.error('Erro ao carregar configurações, restaurando padrão.', error);
+                return JSON.parse(JSON.stringify(defaultState));
+            }
+        }
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+        }
+
+        function mergeDeep(target, source) {
+            for (const key in source) {
+                if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                    if (!target[key]) target[key] = {};
+                    mergeDeep(target[key], source[key]);
+                } else {
+                    target[key] = source[key];
+                }
+            }
+            return target;
+        }
+
+        function openDevedorModal(data = null) {
+            editingRow = null;
             document.getElementById('devedorForm').reset();
+            document.getElementById('modalTitle').textContent = data ? 'Editar Devedor' : 'Adicionar Novo Devedor';
+            document.getElementById('modal').classList.add('active');
+            if (data && data.row) {
+                editingRow = data.row;
+                fillDevedorForm(data);
+            }
         }
 
         function closeModal() {
+        function closeDevedorModal() {
+            editingRow = null;
             document.getElementById('modal').classList.remove('active');
         }
 
@@ -759,17 +1477,182 @@
                     </td>
                 </tr>
             `;
+        function handleBackdrop(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+                if (event.target.id === 'modal') editingRow = null;
+            }
+        }
 
             document.getElementById('tableBody').insertAdjacentHTML('beforeend', newRow);
+        function submitDevedorForm(event) {
+            event.preventDefault();
+            const data = getDevedorFormData();
+            if (editingRow) {
+                updateRow(editingRow, data);
+            } else {
+                addDevedorRow(data);
+            }
             updateStats();
             closeModal();
             alert('✅ Devedor adicionado com sucesso!');
+            closeDevedorModal();
+        }
+        function getDevedorFormData() {
+            return {
+                nome: document.getElementById('inputNome').value.trim(),
+                cpf: document.getElementById('inputCPF').value.trim(),
+                email: document.getElementById('inputEmail').value.trim(),
+                whatsapp: document.getElementById('inputWhatsapp').value.trim(),
+                categoria: document.getElementById('inputCategoria').value,
+                taxaJuros: parseFloat(document.getElementById('inputTaxaJuros').value) || 0,
+                valorOriginal: parseFloat(document.getElementById('inputValorOriginal').value) || 0,
+                valorDepositado: parseFloat(document.getElementById('inputValorDepositado').value) || 0,
+                valorPago: parseFloat(document.getElementById('inputValorPago').value) || 0,
+                valorAtual: parseFloat(document.getElementById('inputValorAtual').value) || 0,
+                diasAtraso: parseInt(document.getElementById('inputDiasAtraso').value) || 0,
+                vencimento: document.getElementById('inputVencimento').value,
+                perfil: document.getElementById('inputPerfil').value,
+                fase: document.getElementById('inputFase').value,
+                inscricoesSerasa: parseInt(document.getElementById('inputInscricoesSerasa').value) || 0,
+                dividaSerasa: parseFloat(document.getElementById('inputDividaSerasa').value) || 0,
+                serasa: document.getElementById('inputSerasa').value,
+                ultimaAcao: document.getElementById('inputUltimaAcao').value.trim(),
+                proximaAcao: document.getElementById('inputProximaAcao').value.trim(),
+                status: document.getElementById('inputStatus').value,
+                reincidente: document.getElementById('inputReincidente').value,
+                observacoes: document.getElementById('inputObservacoes').value.trim()
+            };
         }
 
         // ✅ Função para deletar linha
         function deleteRow(btn) {
+        function fillDevedorForm(data) {
+            document.getElementById('inputNome').value = data.nome;
+            document.getElementById('inputCPF').value = data.cpf;
+            document.getElementById('inputEmail').value = data.email;
+            document.getElementById('inputWhatsapp').value = data.whatsapp;
+            document.getElementById('inputCategoria').value = data.categoria;
+            document.getElementById('inputTaxaJuros').value = data.taxaJuros;
+            document.getElementById('inputValorOriginal').value = data.valorOriginal;
+            document.getElementById('inputValorDepositado').value = data.valorDepositado;
+            document.getElementById('inputValorPago').value = data.valorPago;
+            document.getElementById('inputValorAtual').value = data.valorAtual;
+            document.getElementById('inputVencimento').value = data.vencimento;
+            document.getElementById('inputDiasAtraso').value = data.diasAtraso;
+            document.getElementById('inputPerfil').value = data.perfil;
+            document.getElementById('inputFase').value = data.fase;
+            document.getElementById('inputInscricoesSerasa').value = data.inscricoesSerasa;
+            document.getElementById('inputDividaSerasa').value = data.dividaSerasa;
+            document.getElementById('inputSerasa').value = data.serasa;
+            document.getElementById('inputUltimaAcao').value = data.ultimaAcao;
+            document.getElementById('inputProximaAcao').value = data.proximaAcao;
+            document.getElementById('inputStatus').value = data.status;
+            document.getElementById('inputReincidente').value = data.reincidente;
+            document.getElementById('inputObservacoes').value = data.observacoes;
+            sugerirPerfil();
+        }
+
+        function addDevedorRow(data) {
+            const tbody = document.getElementById('tableBody');
+            const tr = buildRowElement(data);
+            tbody.appendChild(tr);
+        }
+
+        function buildRowElement(data) {
+            const tr = document.createElement('tr');
+            if (data.serasa === 'Sim') tr.classList.add('highlight-serasa');
+            setRowData(tr, data);
+            tr.innerHTML = rowInnerHTML(data);
+            return tr;
+        }
+
+        function setRowData(row, data) {
+            row.dataset.devedor = JSON.stringify(data);
+        }
+
+        function getRowData(row) {
+            try {
+                return JSON.parse(row.dataset.devedor || '{}');
+            } catch (error) {
+                console.error('Erro ao ler dados da linha', error);
+                return {};
+            }
+        }
+
+        function rowInnerHTML(data) {
+            const perfilClass = normalizarPerfil(data.perfil);
+            const faseClass = normalizarFase(data.fase);
+            const daysClass = obterClasseDias(data.diasAtraso);
+            const serasaClass = data.serasa === 'Sim' ? 'serasa-sim' : 'serasa-nao';
+            return `
+                <td><strong>${data.nome}</strong> ${data.reincidente === 'Sim' ? '<span class="badge reincidente">REINCIDENTE</span>' : ''}</td>
+                <td>${data.cpf}</td>
+                <td>${data.email}</td>
+                <td>${data.whatsapp}</td>
+                <td>${data.categoria}</td>
+                <td>R$ ${formatarValor(data.valorOriginal)}</td>
+                <td>R$ ${formatarValor(data.valorDepositado)}</td>
+                <td>R$ ${formatarValor(data.valorPago)}</td>
+                <td>R$ ${formatarValor(data.valorAtual)}</td>
+                <td><span class="days-badge ${daysClass}">${data.diasAtraso} dias</span></td>
+                <td>${formatarData(data.vencimento)}</td>
+                <td>${data.taxaJuros.toFixed(2)}%</td>
+                <td><span class="badge ${perfilClass}">${data.perfil}</span></td>
+                <td><span class="badge ${faseClass}">${data.fase}</span></td>
+                <td>${data.inscricoesSerasa}</td>
+                <td>R$ ${formatarValor(data.dividaSerasa)}</td>
+                <td><span class="badge ${serasaClass}">${data.serasa}</span></td>
+                <td>${data.ultimaAcao || '-'}</td>
+                <td>${data.proximaAcao || '-'}</td>
+                <td>
+                    <select class="status-select">
+                        <option ${data.status === 'Aguardando resposta' ? 'selected' : ''}>Aguardando resposta</option>
+                        <option ${data.status === 'Em negociação' ? 'selected' : ''}>Em negociação</option>
+                        <option ${data.status === 'Acordo fechado' ? 'selected' : ''}>Acordo fechado</option>
+                        <option ${data.status === 'Inadimplente' ? 'selected' : ''}>Inadimplente</option>
+                    </select>
+                </td>
+                <td>${data.observacoes || '-'}</td>
+                <td class="actions">
+                    <button class="btn-action btn-script" title="Visualizar script">📄</button>
+                    <button class="btn-action btn-send" title="Enviar mensagem">✉️</button>
+                    <button class="btn-action btn-edit" title="Editar">✏️</button>
+                    <button class="btn-action btn-delete" title="Excluir">🗑️</button>
+                </td>
+            `;
+        }
+        function updateRow(row, data) {
+            if (data.serasa === 'Sim') {
+                row.classList.add('highlight-serasa');
+            } else {
+                row.classList.remove('highlight-serasa');
+            }
+            setRowData(row, data);
+            row.innerHTML = rowInnerHTML(data);
+        }
+
+        function handleTableClick(event) {
+            const btn = event.target.closest('button');
+            if (!btn) return;
+            const row = btn.closest('tr');
+            if (!row) return;
+            if (btn.classList.contains('btn-delete')) {
+                deleteRow(row);
+            } else if (btn.classList.contains('btn-edit')) {
+                const data = getRowData(row);
+                openDevedorModal({ row, ...data });
+            } else if (btn.classList.contains('btn-script')) {
+                openMessageModal(row, 'preview');
+            } else if (btn.classList.contains('btn-send')) {
+                openMessageModal(row, 'send');
+            }
+        }
+
+        function deleteRow(row) {
             if (confirm('❌ Tem certeza que deseja excluir este devedor?')) {
                 btn.closest('tr').remove();
+                row.remove();
                 updateStats();
                 alert('✅ Devedor removido com sucesso!');
             }
@@ -809,6 +1692,11 @@
                 document.getElementById('devedorForm').onsubmit = originalSubmit;
                 saveDevedor();
             };
+        function obterClasseDias(dias) {
+            if (dias > 90) return 'days-90plus';
+            if (dias > 30) return 'days-31-90';
+            if (dias > 15) return 'days-16-30';
+            return 'days-0-15';
         }
 
         // ✅ Função para mostrar script
@@ -827,6 +1715,23 @@
             }
             
             alert(`📄 SCRIPT SUGERIDO PARA ${nome}\n\nPerfil: ${perfil}\nFase: ${fase}\nSERASA: ${serasa}\n\n💡 Abra o Sistema de Cobrança principal para ver os scripts completos personalizados para este perfil e fase!`);
+        function normalizarPerfil(perfil) {
+            return (perfil || '').toLowerCase().replace('é', 'e').replace(' ', '');
+        }
+
+        function normalizarFase(fase) {
+            return (fase || '').toLowerCase().replace(' ', '');
+        }
+
+        function formatarValor(valor) {
+            return (valor || 0).toFixed(2).replace('.', ',');
+        }
+
+        function formatarData(data) {
+            if (!data) return '-';
+            const d = new Date(data);
+            if (Number.isNaN(d.getTime())) return data;
+            return d.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
         }
 
         // ✅ Função para filtrar tabela
@@ -836,6 +1741,7 @@
             const filterSerasa = document.getElementById('filterSerasa').value;
             const searchName = document.getElementById('searchName').value.toLowerCase();
             
+
             const rows = document.querySelectorAll('#tableBody tr');
             
             rows.forEach(row => {
@@ -849,6 +1755,12 @@
                 const matchSerasa = !filterSerasa || serasa === filterSerasa;
                 const matchName = !searchName || nome.includes(searchName);
                 
+                const data = getRowData(row);
+                const matchPerfil = !filterPerfil || data.perfil.toLowerCase().includes(filterPerfil);
+                const matchFase = !filterFase || data.fase.toLowerCase().includes(filterFase);
+                const matchSerasa = !filterSerasa || data.serasa === filterSerasa;
+                const matchName = !searchName || data.nome.toLowerCase().includes(searchName);
+
                 if (matchPerfil && matchFase && matchSerasa && matchName) {
                     row.style.display = '';
                 } else {
@@ -856,6 +1768,7 @@
                 }
             });
             
+
             updateStats();
         }
 
@@ -864,6 +1777,7 @@
             const rows = document.querySelectorAll('#tableBody tr');
             const visibleRows = Array.from(rows).filter(row => row.style.display !== 'none');
             
+            const rows = Array.from(document.querySelectorAll('#tableBody tr')).filter(row => row.style.display !== 'none');
             let totalPendente = 0;
             let totalSerasa = 0;
             
@@ -873,11 +1787,22 @@
                 
                 totalPendente += valorAtual;
                 if (serasa === 'Sim') totalSerasa++;
+            let totalPago = 0;
+
+            rows.forEach(row => {
+                const data = getRowData(row);
+                totalPendente += data.valorAtual || 0;
+                totalPago += data.valorPago || 0;
+                if (data.serasa === 'Sim') totalSerasa++;
             });
             
             document.getElementById('statTotal').textContent = visibleRows.length;
             document.getElementById('statPending').textContent = `R$ ${totalPendente.toFixed(2).replace('.', ',')}`;
+
+            document.getElementById('statTotal').textContent = rows.length;
+            document.getElementById('statPending').textContent = `R$ ${formatarValor(totalPendente)}`;
             document.getElementById('statSerasa').textContent = totalSerasa;
+            document.getElementById('statPaid').textContent = `R$ ${formatarValor(totalPago)}`;
         }
 
         // ✅ Função para exportar CSV
@@ -907,19 +1832,342 @@
                     });
                     csv.push(rowData.join(';'));
                 }
+            const rows = Array.from(document.querySelectorAll('#tableBody tr'));
+            const headers = Array.from(document.querySelectorAll('#mainTable thead th')).map(th => th.textContent);
+            const csv = [headers.join(';')];
+
+            rows.forEach(row => {
+                if (row.style.display === 'none') return;
+                const data = getRowData(row);
+                csv.push([
+                    data.nome,
+                    data.cpf,
+                    data.email,
+                    data.whatsapp,
+                    data.categoria,
+                    formatarValor(data.valorOriginal),
+                    formatarValor(data.valorDepositado),
+                    formatarValor(data.valorPago),
+                    formatarValor(data.valorAtual),
+                    data.diasAtraso,
+                    formatarData(data.vencimento),
+                    data.taxaJuros.toFixed(2),
+                    data.perfil,
+                    data.fase,
+                    data.inscricoesSerasa,
+                    formatarValor(data.dividaSerasa),
+                    data.serasa,
+                    data.ultimaAcao,
+                    data.proximaAcao,
+                    data.status,
+                    data.observacoes
+                ].join(';'));
             });
             
             // Download
             const csvContent = csv.join('\n');
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
+
+            const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             link.setAttribute('href', url);
             link.setAttribute('download', `cobrancas_${new Date().toISOString().split('T')[0]}.csv`);
             link.style.visibility = 'hidden';
             document.body.appendChild(link);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `cobrancas_${new Date().toISOString().split('T')[0]}.csv`;
             link.click();
             document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function openTemplateModal() {
+            openModal('modalTemplates');
+            loadSelectedTemplate();
+        }
+
+        function loadSelectedTemplate() {
+            const channel = document.getElementById('templateChannel').value;
+            const risk = document.getElementById('templateRisk').value;
+            const phase = document.getElementById('templatePhase').value;
+            const template = (((appState.templates || {})[channel] || {})[risk] || {})[phase] || '';
+            document.getElementById('templateContent').value = template;
+        }
+
+        function saveTemplateContent() {
+            const channel = document.getElementById('templateChannel').value;
+            const risk = document.getElementById('templateRisk').value;
+            const phase = document.getElementById('templatePhase').value;
+            const content = document.getElementById('templateContent').value;
+
+            if (!appState.templates[channel]) appState.templates[channel] = {};
+            if (!appState.templates[channel][risk]) appState.templates[channel][risk] = {};
+            appState.templates[channel][risk][phase] = content;
+            saveState();
+            alert('✅ Template atualizado com sucesso!');
+        }
+
+        function restoreDefaultTemplate() {
+            const channel = document.getElementById('templateChannel').value;
+            const risk = document.getElementById('templateRisk').value;
+            const phase = document.getElementById('templatePhase').value;
+            const defaultTemplate = (((defaultState.templates || {})[channel] || {})[risk] || {})[phase] || '';
+            if (!defaultTemplate) {
+                alert('⚠️ Não há template padrão para este cenário.');
+                return;
+            }
+            if (!appState.templates[channel]) appState.templates[channel] = {};
+            if (!appState.templates[channel][risk]) appState.templates[channel][risk] = {};
+            appState.templates[channel][risk][phase] = defaultTemplate;
+            document.getElementById('templateContent').value = defaultTemplate;
+            saveState();
+            alert('✅ Template restaurado para o padrão.');
+        }
+
+        function loadFormsFromState() {
+            document.getElementById('riskBaixoInscricoes').value = appState.riskGuidelines.baixo.maxInscricoes;
+            document.getElementById('riskBaixoValor').value = appState.riskGuidelines.baixo.maxValor;
+            document.getElementById('riskMedioInscricoes').value = appState.riskGuidelines.medio.maxInscricoes;
+            document.getElementById('riskMedioValor').value = appState.riskGuidelines.medio.maxValor;
+
+            document.getElementById('billingBaixoDesconto').value = appState.billingGuidelines.baixo.desconto;
+            document.getElementById('billingBaixoParcelas').value = appState.billingGuidelines.baixo.parcelas;
+            document.getElementById('billingMedioDesconto').value = appState.billingGuidelines.medio.desconto;
+            document.getElementById('billingMedioParcelas').value = appState.billingGuidelines.medio.parcelas;
+            document.getElementById('billingAltoDesconto').value = appState.billingGuidelines.alto.desconto;
+            document.getElementById('billingAltoParcelas').value = appState.billingGuidelines.alto.parcelas;
+
+            document.getElementById('emailServiceId').value = appState.emailConfig.serviceId;
+            document.getElementById('emailTemplateId').value = appState.emailConfig.templateId;
+            document.getElementById('emailPublicKey').value = appState.emailConfig.publicKey;
+        }
+
+        function submitRiskForm(event) {
+            event.preventDefault();
+            appState.riskGuidelines.baixo.maxInscricoes = parseInt(document.getElementById('riskBaixoInscricoes').value) || 0;
+            appState.riskGuidelines.baixo.maxValor = parseFloat(document.getElementById('riskBaixoValor').value) || 0;
+            appState.riskGuidelines.medio.maxInscricoes = parseInt(document.getElementById('riskMedioInscricoes').value) || 0;
+            appState.riskGuidelines.medio.maxValor = parseFloat(document.getElementById('riskMedioValor').value) || 0;
+            saveState();
+            alert('✅ Diretrizes de risco salvas!');
+            closeModal('modalRisk');
+            sugerirPerfil();
+        }
+
+        function submitBillingForm(event) {
+            event.preventDefault();
+            appState.billingGuidelines.baixo.desconto = parseFloat(document.getElementById('billingBaixoDesconto').value) || 0;
+            appState.billingGuidelines.baixo.parcelas = parseInt(document.getElementById('billingBaixoParcelas').value) || 1;
+            appState.billingGuidelines.medio.desconto = parseFloat(document.getElementById('billingMedioDesconto').value) || 0;
+            appState.billingGuidelines.medio.parcelas = parseInt(document.getElementById('billingMedioParcelas').value) || 1;
+            appState.billingGuidelines.alto.desconto = parseFloat(document.getElementById('billingAltoDesconto').value) || 0;
+            appState.billingGuidelines.alto.parcelas = parseInt(document.getElementById('billingAltoParcelas').value) || 1;
+            saveState();
+            alert('✅ Diretrizes de cobrança salvas!');
+            closeModal('modalBilling');
+        }
+
+        function openEmailConfigModal() {
+            openModal('modalEmailConfig');
+        }
+
+        function submitEmailConfigForm(event) {
+            event.preventDefault();
+            appState.emailConfig.serviceId = document.getElementById('emailServiceId').value.trim();
+            appState.emailConfig.templateId = document.getElementById('emailTemplateId').value.trim();
+            appState.emailConfig.publicKey = document.getElementById('emailPublicKey').value.trim();
+            saveState();
+            if (appState.emailConfig.publicKey) {
+                emailjs.init(appState.emailConfig.publicKey);
+            }
+            alert('✅ Configuração de e-mail salva!');
+            closeModal('modalEmailConfig');
+        }
+
+        function sendTestEmail() {
+            if (!validarConfigEmail()) return;
+            const params = {
+                to_name: 'Teste',
+                to_email: appState.emailConfig.testeEmail || `${appState.emailConfig.publicKey}@example.com`,
+                message: 'Teste de integração do sistema de cobranças.'
+            };
+            emailjs.send(appState.emailConfig.serviceId, appState.emailConfig.templateId, params)
+                .then(() => alert('✅ E-mail de teste enviado (verifique o painel EmailJS).'))
+                .catch(error => {
+                    console.error(error);
+                    alert('❌ Falha ao enviar e-mail de teste. Confira as credenciais.');
+                });
+        }
+        function validarConfigEmail() {
+            const { serviceId, templateId, publicKey } = appState.emailConfig;
+            if (!serviceId || !templateId || !publicKey) {
+                alert('⚠️ Configure serviceId, templateId e publicKey para enviar e-mails.');
+                return false;
+            }
+            return true;
+        }
+
+        function openMessageModal(row, mode) {
+            currentMessageRow = row;
+            const data = getRowData(row);
+            document.getElementById('messageTitle').textContent = mode === 'send' ? `Enviar mensagem para ${data.nome}` : `Template para ${data.nome}`;
+            const channelSelect = document.getElementById('messageChannel');
+            if (mode === 'send') {
+                channelSelect.removeAttribute('disabled');
+            } else {
+                channelSelect.setAttribute('disabled', 'disabled');
+            }
+            updateMessagePreview();
+            openModal('modalMessage');
+        }
+
+        function updateMessagePreview() {
+            if (!currentMessageRow) return;
+            const channel = document.getElementById('messageChannel').value;
+            const data = getRowData(currentMessageRow);
+            const message = gerarMensagem(channel, data);
+            document.getElementById('messageContent').value = message;
+        }
+
+        function gerarMensagem(channel, data) {
+            const riskKey = normalizarPerfil(data.perfil) || 'baixo';
+            const phaseKey = normalizarFase(data.fase) || 'fase1';
+            const template = (((appState.templates || {})[channel] || {})[riskKey] || {})[phaseKey] || '';
+            const diretriz = appState.billingGuidelines[riskKey] || appState.billingGuidelines.baixo;
+            const descontoPercentual = diretriz.desconto || 0;
+            const parcelas = diretriz.parcelas || 1;
+            const valorAtual = data.valorAtual || 0;
+            const valorDescontado = valorAtual * (1 - descontoPercentual / 100);
+            const valorParcela = valorDescontado / parcelas;
+
+            const substitutions = {
+                nome: data.nome,
+                valor_atual: `R$ ${formatarValor(valorAtual)}`,
+                valor_descontado: `R$ ${formatarValor(valorDescontado)}`,
+                desconto_percentual: `${descontoPercentual}%`,
+                parcelas_maximas: parcelas,
+                valor_parcela: `R$ ${formatarValor(valorParcela)}`,
+                dias_atraso: data.diasAtraso,
+                fase: data.fase,
+                perfil: data.perfil,
+                vencimento: formatarData(data.vencimento)
+            };
+
+            return template.replace(/\{\{(.*?)\}\}/g, (_, key) => {
+                const normalized = key.trim().toLowerCase();
+                return substitutions[normalized] !== undefined ? substitutions[normalized] : '';
+            });
+        }
+
+        function copyMessageToClipboard() {
+            const textarea = document.getElementById('messageContent');
+            textarea.select();
+            document.execCommand('copy');
+            alert('📋 Mensagem copiada para a área de transferência.');
+        }
+
+        function triggerSendMessage() {
+            if (!currentMessageRow) return;
+            const channel = document.getElementById('messageChannel').value;
+            const data = getRowData(currentMessageRow);
+            const message = document.getElementById('messageContent').value;
+
+            if (channel === 'email') {
+                if (!validarConfigEmail()) return;
+                const params = {
+                    to_name: data.nome,
+                    to_email: data.email,
+                    message,
+                    dias_atraso: data.diasAtraso,
+                    valor_atual: formatarValor(data.valorAtual)
+                };
+                emailjs.send(appState.emailConfig.serviceId, appState.emailConfig.templateId, params)
+                    .then(() => alert('✅ E-mail enviado com sucesso!'))
+                    .catch(error => {
+                        console.error(error);
+                        alert('❌ Falha ao enviar o e-mail. Verifique as credenciais.');
+                    });
+            } else {
+                const phone = data.whatsapp.replace(/\D/g, '');
+                const link = `https://wa.me/55${phone}?text=${encodeURIComponent(message)}`;
+                window.open(link, '_blank');
+            }
+        }
+
+        function handleImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const lines = e.target.result.split(/\r?\n/).filter(Boolean);
+                if (lines.length < 2) {
+                    alert('⚠️ Arquivo vazio ou sem dados.');
+                    return;
+                }
+                const headers = lines[0].split(/;|,/).map(h => h.trim().toLowerCase());
+                for (let i = 1; i < lines.length; i++) {
+                    const cols = lines[i].split(/;|,/).map(col => col.trim());
+                    if (!cols.length || !cols[0]) continue;
+                    const data = mapCsvRow(headers, cols);
+                    addDevedorRow(data);
+                }
+                updateStats();
+                alert('✅ Importação concluída!');
+            };
+            reader.readAsText(file, 'utf-8');
+            event.target.value = '';
+        }
+
+        function mapCsvRow(headers, cols) {
+            const get = label => {
+                const index = headers.indexOf(label);
+                return index >= 0 ? cols[index] : '';
+            };
+            return {
+                nome: get('nome'),
+                cpf: get('cpf'),
+                email: get('email'),
+                whatsapp: get('whatsapp'),
+                categoria: get('categoria'),
+                taxaJuros: parseFloat((get('taxa juros') || get('taxa juros (%)') || '0').replace(',', '.')) || 0,
+                valorOriginal: parseFloat((get('valor original') || '0').replace(',', '.')) || 0,
+                valorDepositado: parseFloat((get('valor depositado') || '0').replace(',', '.')) || 0,
+                valorPago: parseFloat((get('valor pago') || '0').replace(',', '.')) || 0,
+                valorAtual: parseFloat((get('valor atual') || '0').replace(',', '.')) || 0,
+                diasAtraso: parseInt(get('dias atraso')) || 0,
+                vencimento: get('vencimento'),
+                perfil: get('perfil risco') || 'Baixo',
+                fase: get('fase') || 'Fase 1',
+                inscricoesSerasa: parseInt(get('inscrições serasa')) || 0,
+                dividaSerasa: parseFloat((get('dívida no serasa') || '0').replace(',', '.')) || 0,
+                serasa: get('serasa') || 'Não',
+                ultimaAcao: get('última ação'),
+                proximaAcao: get('próxima ação'),
+                status: get('status') || 'Aguardando resposta',
+                reincidente: 'Não',
+                observacoes: get('observações')
+            };
+        }
+
+        function sugerirPerfil() {
+            const inscricoes = parseInt(document.getElementById('inputInscricoesSerasa').value) || 0;
+            const valorSerasa = parseFloat(document.getElementById('inputDividaSerasa').value) || 0;
+            let sugestao = 'Sugestão de perfil: Baixo';
+            if (inscricoes > appState.riskGuidelines.medio.maxInscricoes || valorSerasa > appState.riskGuidelines.medio.maxValor) {
+                sugestao = 'Sugestão de perfil: Alto';
+            } else if (inscricoes > appState.riskGuidelines.baixo.maxInscricoes || valorSerasa > appState.riskGuidelines.baixo.maxValor) {
+                sugestao = 'Sugestão de perfil: Médio';
+            }
+            document.getElementById('perfilSugestao').textContent = sugestao;
         }
     </script>
 </body>
